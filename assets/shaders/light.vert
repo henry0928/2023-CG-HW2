@@ -24,17 +24,21 @@ out vec3 FragPos;
 //              a. The output is FragColor (any var is OK)
 //           3. Calculate
 //              a. For direct light, lighting = ambient + diffuse + specular
-//              b. For point light & spot light, lighting = ambient + attenuation * (diffuse + specular)
+//              b. For point light & spot light, lighting = attenuation * (ambient + diffuse + specular)
 //              c. Final color = direct + point + spot if all three light are enabled
 //           4. attenuation
 //              a. Use formula from slides 'shading.ppt' page 20
 //           5. For each light, ambient, diffuse and specular color are the same
 //           6. diffuse = kd * max(normal vector dot light direction, 0.0)
-//           7. specular = ks * pow(max(normal vector dot halfway direction), 0.0), shininess);
+//           7. specular = ks * pow(max(normal vector dot halfway direction), 0.0), shininess); or 
+//				specular = ks * pow(max(view direction dot reflect direction), 0.0), shininess);
 //           8. we've set all light parameters for you (see context.h) and definition in fragment shader
 //           9. You should pre calculate normal matrix (trasfer normal from model local space to world space) 
 //              in light.cpp rather than in shaders
 
 void main() {
-
+    TexCoord = texCoord ;
+    Normal = vec3( TIModelMatrix * vec4(normal, 1.0)) ;
+    FragPos = vec3(ModelMatrix * vec4(position, 1.0)); 
+    gl_Position = Projection * ViewMatrix * ModelMatrix * vec4(position, 1.0f) ;
 }

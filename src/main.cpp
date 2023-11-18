@@ -148,7 +148,7 @@ void setupObjects() {
   ctx.objects.push_back(new Object(2, glm::translate(glm::identity<glm::mat4>(), glm::vec3(5, 0, 3))));
 
   // TODO#3-2: Put the plane into scene
-  // ctx.objects.push_back(new Object(3, glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.0, 0.0, 0.0))));
+  ctx.objects.push_back(new Object(3, glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.0, 0.0, 0.0))));
 }
 
 int main() {
